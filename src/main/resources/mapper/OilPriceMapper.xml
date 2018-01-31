@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.transport.user.dao.OilPriceMapper" >
+    <resultMap id="BaseResultMap" type="com.transport.user.pojo.po.OilPrice" >
+        <id column="oil_price_id" property="oilPriceId" jdbcType="INTEGER" />
+        <result column="Oil" property="oil" jdbcType="INTEGER" />
+        <result column="current_price" property="currentPrice" jdbcType="DECIMAL" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="creator" property="creator" jdbcType="INTEGER" />
+        <result column="source_price" property="sourcePrice" jdbcType="INTEGER" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        oil_price_id, Oil, current_price, update_time, create_time, creator, source_price
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from t_oil_price
+        where oil_price_id = #{oilPriceId,jdbcType=INTEGER}
+    </select>
+
+    <insert id="insert" parameterType="com.transport.user.pojo.po.OilPrice" >
+        insert into t_oil_price (oil_price_id, Oil, current_price, 
+            update_time, create_time, creator, 
+            source_price)
+        values (#{oilPriceId,jdbcType=INTEGER}, #{oil,jdbcType=INTEGER}, #{currentPrice,jdbcType=DECIMAL}, 
+            #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{creator,jdbcType=INTEGER}, 
+            #{sourcePrice,jdbcType=INTEGER})
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.transport.user.pojo.po.OilPrice" >
+        update t_oil_price
+        <set >
+            <if test="oil != null" >
+                Oil = #{oil,jdbcType=INTEGER},
+            </if>
+            <if test="currentPrice != null" >
+                current_price = #{currentPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="updateTime != null" >
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="creator != null" >
+                creator = #{creator,jdbcType=INTEGER},
+            </if>
+            <if test="sourcePrice != null" >
+                source_price = #{sourcePrice,jdbcType=INTEGER},
+            </if>
+        </set>
+        where oil_price_id = #{oilPriceId,jdbcType=INTEGER}
+    </update>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from t_oil_price
+        where oil_price_id = #{oilPriceId,jdbcType=INTEGER}
+    </delete>
+
+</mapper>

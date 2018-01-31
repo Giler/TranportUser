@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.transport.user.dao.TruckInfoMapper" >
+    <resultMap id="BaseResultMap" type="com.transport.user.pojo.po.TruckInfo" >
+        <id column="truck_id" property="truckId" jdbcType="INTEGER" />
+        <result column="truck_license_plate_number" property="truckLicensePlateNumber" jdbcType="VARCHAR" />
+        <result column="truck_last_audit_date" property="truckLastAuditDate" jdbcType="TIMESTAMP" />
+        <result column="truck_next_audit_date" property="truckNextAuditDate" jdbcType="TIMESTAMP" />
+        <result column="tonnage" property="tonnage" jdbcType="DOUBLE" />
+        <result column="truck_load" property="truckLoad" jdbcType="DOUBLE" />
+        <result column="wheels" property="wheels" jdbcType="INTEGER" />
+        <result column="truck_wagon_type" property="truckWagonType" jdbcType="INTEGER" />
+        <result column="mileage" property="mileage" jdbcType="DOUBLE" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        truck_id, truck_license_plate_number, truck_last_audit_date, truck_next_audit_date, 
+        tonnage, truck_load, wheels, truck_wagon_type, mileage
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from t_truck_info
+        where truck_id = #{truckId,jdbcType=INTEGER}
+    </select>
+
+    <insert id="insert" parameterType="com.transport.user.pojo.po.TruckInfo" >
+        insert into t_truck_info (truck_id, truck_license_plate_number, 
+            truck_last_audit_date, truck_next_audit_date, 
+            tonnage, truck_load, wheels, 
+            truck_wagon_type, mileage)
+        values (#{truckId,jdbcType=INTEGER}, #{truckLicensePlateNumber,jdbcType=VARCHAR}, 
+            #{truckLastAuditDate,jdbcType=TIMESTAMP}, #{truckNextAuditDate,jdbcType=TIMESTAMP}, 
+            #{tonnage,jdbcType=DOUBLE}, #{truckLoad,jdbcType=DOUBLE}, #{wheels,jdbcType=INTEGER}, 
+            #{truckWagonType,jdbcType=INTEGER}, #{mileage,jdbcType=DOUBLE})
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.transport.user.pojo.po.TruckInfo" >
+        update t_truck_info
+        <set >
+            <if test="truckLicensePlateNumber != null" >
+                truck_license_plate_number = #{truckLicensePlateNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="truckLastAuditDate != null" >
+                truck_last_audit_date = #{truckLastAuditDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="truckNextAuditDate != null" >
+                truck_next_audit_date = #{truckNextAuditDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tonnage != null" >
+                tonnage = #{tonnage,jdbcType=DOUBLE},
+            </if>
+            <if test="truckLoad != null" >
+                truck_load = #{truckLoad,jdbcType=DOUBLE},
+            </if>
+            <if test="wheels != null" >
+                wheels = #{wheels,jdbcType=INTEGER},
+            </if>
+            <if test="truckWagonType != null" >
+                truck_wagon_type = #{truckWagonType,jdbcType=INTEGER},
+            </if>
+            <if test="mileage != null" >
+                mileage = #{mileage,jdbcType=DOUBLE},
+            </if>
+        </set>
+        where truck_id = #{truckId,jdbcType=INTEGER}
+    </update>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from t_truck_info
+        where truck_id = #{truckId,jdbcType=INTEGER}
+    </delete>
+
+</mapper>

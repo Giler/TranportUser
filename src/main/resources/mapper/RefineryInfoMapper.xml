@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.transport.user.dao.RefineryInfoMapper" >
+    <resultMap id="BaseResultMap" type="com.transport.user.pojo.po.RefineryInfo" >
+        <id column="refinery_id" property="refineryId" jdbcType="INTEGER" />
+        <result column="location" property="location" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="creator" property="creator" jdbcType="INTEGER" />
+        <result column="province" property="province" jdbcType="INTEGER" />
+        <result column="city" property="city" jdbcType="INTEGER" />
+        <result column="refinery_name" property="refineryName" jdbcType="VARCHAR" />
+        <result column="invoice" property="invoice" jdbcType="INTEGER" />
+        <result column="state" property="state" jdbcType="INTEGER" />
+        <result column="push_info" property="pushInfo" jdbcType="INTEGER" />
+        <result column="official_offer" property="officialOffer" jdbcType="INTEGER" />
+        <result column="website" property="website" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        refinery_id, location, create_time, creator, province, city, refinery_name, invoice, 
+        state, push_info, official_offer, website
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from t_refinery_info
+        where refinery_id = #{refineryId,jdbcType=INTEGER}
+    </select>
+
+    <insert id="insert" parameterType="com.transport.user.pojo.po.RefineryInfo" >
+        insert into t_refinery_info (refinery_id, location, create_time, 
+            creator, province, city, 
+            refinery_name, invoice, state, 
+            push_info, official_offer, website
+            )
+        values (#{refineryId,jdbcType=INTEGER}, #{location,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+            #{creator,jdbcType=INTEGER}, #{province,jdbcType=INTEGER}, #{city,jdbcType=INTEGER}, 
+            #{refineryName,jdbcType=VARCHAR}, #{invoice,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, 
+            #{pushInfo,jdbcType=INTEGER}, #{officialOffer,jdbcType=INTEGER}, #{website,jdbcType=VARCHAR}
+            )
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.transport.user.pojo.po.RefineryInfo" >
+        update t_refinery_info
+        <set >
+            <if test="location != null" >
+                location = #{location,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="creator != null" >
+                creator = #{creator,jdbcType=INTEGER},
+            </if>
+            <if test="province != null" >
+                province = #{province,jdbcType=INTEGER},
+            </if>
+            <if test="city != null" >
+                city = #{city,jdbcType=INTEGER},
+            </if>
+            <if test="refineryName != null" >
+                refinery_name = #{refineryName,jdbcType=VARCHAR},
+            </if>
+            <if test="invoice != null" >
+                invoice = #{invoice,jdbcType=INTEGER},
+            </if>
+            <if test="state != null" >
+                state = #{state,jdbcType=INTEGER},
+            </if>
+            <if test="pushInfo != null" >
+                push_info = #{pushInfo,jdbcType=INTEGER},
+            </if>
+            <if test="officialOffer != null" >
+                official_offer = #{officialOffer,jdbcType=INTEGER},
+            </if>
+            <if test="website != null" >
+                website = #{website,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where refinery_id = #{refineryId,jdbcType=INTEGER}
+    </update>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from t_refinery_info
+        where refinery_id = #{refineryId,jdbcType=INTEGER}
+    </delete>
+
+</mapper>

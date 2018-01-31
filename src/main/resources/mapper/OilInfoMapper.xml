@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.transport.user.dao.OilInfoMapper" >
+    <resultMap id="BaseResultMap" type="com.transport.user.pojo.po.OilInfo" >
+        <id column="oil_id" property="oilId" jdbcType="INTEGER" />
+        <result column="refinery" property="refinery" jdbcType="INTEGER" />
+        <result column="oil_level" property="oilLevel" jdbcType="VARCHAR" />
+        <result column="oil_type" property="oilType" jdbcType="INTEGER" />
+        <result column="colour" property="colour" jdbcType="VARCHAR" />
+        <result column="density" property="density" jdbcType="DOUBLE" />
+        <result column="sample" property="sample" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        oil_id, refinery, oil_level, oil_type, colour, density, sample, create_time
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from t_oil_info
+        where oil_id = #{oilId,jdbcType=INTEGER}
+    </select>
+
+    <insert id="insert" parameterType="com.transport.user.pojo.po.OilInfo" >
+        insert into t_oil_info (oil_id, refinery, oil_level, 
+            oil_type, colour, density, 
+            sample, create_time)
+        values (#{oilId,jdbcType=INTEGER}, #{refinery,jdbcType=INTEGER}, #{oilLevel,jdbcType=VARCHAR}, 
+            #{oilType,jdbcType=INTEGER}, #{colour,jdbcType=VARCHAR}, #{density,jdbcType=DOUBLE}, 
+            #{sample,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.transport.user.pojo.po.OilInfo" >
+        update t_oil_info
+        <set >
+            <if test="refinery != null" >
+                refinery = #{refinery,jdbcType=INTEGER},
+            </if>
+            <if test="oilLevel != null" >
+                oil_level = #{oilLevel,jdbcType=VARCHAR},
+            </if>
+            <if test="oilType != null" >
+                oil_type = #{oilType,jdbcType=INTEGER},
+            </if>
+            <if test="colour != null" >
+                colour = #{colour,jdbcType=VARCHAR},
+            </if>
+            <if test="density != null" >
+                density = #{density,jdbcType=DOUBLE},
+            </if>
+            <if test="sample != null" >
+                sample = #{sample,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where oil_id = #{oilId,jdbcType=INTEGER}
+    </update>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from t_oil_info
+        where oil_id = #{oilId,jdbcType=INTEGER}
+    </delete>
+
+</mapper>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.transport.user.dao.DriverInfoMapper" >
+    <resultMap id="BaseResultMap" type="com.transport.user.pojo.po.DriverInfo" >
+        <id column="driver_id" property="driverId" jdbcType="INTEGER" />
+        <result column="driver_name" property="driverName" jdbcType="VARCHAR" />
+        <result column="driver_phone" property="driverPhone" jdbcType="VARCHAR" />
+        <result column="driver_age" property="driverAge" jdbcType="INTEGER" />
+        <result column="vehicle_age" property="vehicleAge" jdbcType="INTEGER" />
+        <result column="driving_level" property="drivingLevel" jdbcType="VARCHAR" />
+        <result column="dengerous_permit" property="dengerousPermit" jdbcType="INTEGER" />
+        <result column="experince" property="experince" jdbcType="INTEGER" />
+        <result column="home_address" property="homeAddress" jdbcType="VARCHAR" />
+        <result column="working_distance" property="workingDistance" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        driver_id, driver_name, driver_phone, driver_age, vehicle_age, driving_level, dengerous_permit, 
+        experince, home_address, working_distance
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from t_driver_info
+        where driver_id = #{driverId,jdbcType=INTEGER}
+    </select>
+
+    <insert id="insert" parameterType="com.transport.user.pojo.po.DriverInfo" >
+        insert into t_driver_info (driver_id, driver_name, driver_phone, 
+            driver_age, vehicle_age, driving_level, 
+            dengerous_permit, experince, home_address, 
+            working_distance)
+        values (#{driverId,jdbcType=INTEGER}, #{driverName,jdbcType=VARCHAR}, #{driverPhone,jdbcType=VARCHAR}, 
+            #{driverAge,jdbcType=INTEGER}, #{vehicleAge,jdbcType=INTEGER}, #{drivingLevel,jdbcType=VARCHAR}, 
+            #{dengerousPermit,jdbcType=INTEGER}, #{experince,jdbcType=INTEGER}, #{homeAddress,jdbcType=VARCHAR}, 
+            #{workingDistance,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.transport.user.pojo.po.DriverInfo" >
+        update t_driver_info
+        <set >
+            <if test="driverName != null" >
+                driver_name = #{driverName,jdbcType=VARCHAR},
+            </if>
+            <if test="driverPhone != null" >
+                driver_phone = #{driverPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="driverAge != null" >
+                driver_age = #{driverAge,jdbcType=INTEGER},
+            </if>
+            <if test="vehicleAge != null" >
+                vehicle_age = #{vehicleAge,jdbcType=INTEGER},
+            </if>
+            <if test="drivingLevel != null" >
+                driving_level = #{drivingLevel,jdbcType=VARCHAR},
+            </if>
+            <if test="dengerousPermit != null" >
+                dengerous_permit = #{dengerousPermit,jdbcType=INTEGER},
+            </if>
+            <if test="experince != null" >
+                experince = #{experince,jdbcType=INTEGER},
+            </if>
+            <if test="homeAddress != null" >
+                home_address = #{homeAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="workingDistance != null" >
+                working_distance = #{workingDistance,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where driver_id = #{driverId,jdbcType=INTEGER}
+    </update>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from t_driver_info
+        where driver_id = #{driverId,jdbcType=INTEGER}
+    </delete>
+
+</mapper>

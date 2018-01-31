@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.transport.user.dao.TankInfoMapper" >
+    <resultMap id="BaseResultMap" type="com.transport.user.pojo.po.TankInfo" >
+        <id column="tank_id" property="tankId" jdbcType="INTEGER" />
+        <result column="company" property="company" jdbcType="INTEGER" />
+        <result column="tank_address" property="tankAddress" jdbcType="INTEGER" />
+        <result column="customer" property="customer" jdbcType="INTEGER" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="reminder_oil" property="reminderOil" jdbcType="DOUBLE" />
+        <result column="available" property="available" jdbcType="INTEGER" />
+        <result column="capacity" property="capacity" jdbcType="DOUBLE" />
+        <result column="tank_type" property="tankType" jdbcType="INTEGER" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        tank_id, company, tank_address, customer, create_time, reminder_oil, available, capacity, 
+        tank_type
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from t_tank_info
+        where tank_id = #{tankId,jdbcType=INTEGER}
+    </select>
+
+    <insert id="insert" parameterType="com.transport.user.pojo.po.TankInfo" >
+        insert into t_tank_info (tank_id, company, tank_address, 
+            customer, create_time, reminder_oil, 
+            available, capacity, tank_type
+            )
+        values (#{tankId,jdbcType=INTEGER}, #{company,jdbcType=INTEGER}, #{tankAddress,jdbcType=INTEGER}, 
+            #{customer,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{reminderOil,jdbcType=DOUBLE}, 
+            #{available,jdbcType=INTEGER}, #{capacity,jdbcType=DOUBLE}, #{tankType,jdbcType=INTEGER}
+            )
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.transport.user.pojo.po.TankInfo" >
+        update t_tank_info
+        <set >
+            <if test="company != null" >
+                company = #{company,jdbcType=INTEGER},
+            </if>
+            <if test="tankAddress != null" >
+                tank_address = #{tankAddress,jdbcType=INTEGER},
+            </if>
+            <if test="customer != null" >
+                customer = #{customer,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="reminderOil != null" >
+                reminder_oil = #{reminderOil,jdbcType=DOUBLE},
+            </if>
+            <if test="available != null" >
+                available = #{available,jdbcType=INTEGER},
+            </if>
+            <if test="capacity != null" >
+                capacity = #{capacity,jdbcType=DOUBLE},
+            </if>
+            <if test="tankType != null" >
+                tank_type = #{tankType,jdbcType=INTEGER},
+            </if>
+        </set>
+        where tank_id = #{tankId,jdbcType=INTEGER}
+    </update>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from t_tank_info
+        where tank_id = #{tankId,jdbcType=INTEGER}
+    </delete>
+
+</mapper>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.transport.user.dao.TripMapper" >
+    <resultMap id="BaseResultMap" type="com.transport.user.pojo.po.Trip" >
+        <id column="trip_id" property="tripId" jdbcType="INTEGER" />
+        <result column="driver" property="driver" jdbcType="INTEGER" />
+        <result column="truck" property="truck" jdbcType="INTEGER" />
+        <result column="intermediary" property="intermediary" jdbcType="INTEGER" />
+        <result column="refinery" property="refinery" jdbcType="INTEGER" />
+        <result column="oil" property="oil" jdbcType="INTEGER" />
+        <result column="tonnage" property="tonnage" jdbcType="DOUBLE" />
+        <result column="oil_unit_price" property="oilUnitPrice" jdbcType="DECIMAL" />
+        <result column="total" property="total" jdbcType="DECIMAL" />
+        <result column="freight_unit_price" property="freightUnitPrice" jdbcType="DECIMAL" />
+        <result column="freight" property="freight" jdbcType="DECIMAL" />
+        <result column="road_toll" property="roadToll" jdbcType="DECIMAL" />
+        <result column="departure_time" property="departureTime" jdbcType="TIMESTAMP" />
+        <result column="back_time" property="backTime" jdbcType="TIMESTAMP" />
+        <result column="escort" property="escort" jdbcType="INTEGER" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        trip_id, driver, truck, intermediary, refinery, oil, tonnage, oil_unit_price, total, 
+        freight_unit_price, freight, road_toll, departure_time, back_time, escort
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from t_trip
+        where trip_id = #{tripId,jdbcType=INTEGER}
+    </select>
+
+    <insert id="insert" parameterType="com.transport.user.pojo.po.Trip" >
+        insert into t_trip (trip_id, driver, truck, 
+            intermediary, refinery, oil, 
+            tonnage, oil_unit_price, total, 
+            freight_unit_price, freight, road_toll, 
+            departure_time, back_time, escort
+            )
+        values (#{tripId,jdbcType=INTEGER}, #{driver,jdbcType=INTEGER}, #{truck,jdbcType=INTEGER}, 
+            #{intermediary,jdbcType=INTEGER}, #{refinery,jdbcType=INTEGER}, #{oil,jdbcType=INTEGER}, 
+            #{tonnage,jdbcType=DOUBLE}, #{oilUnitPrice,jdbcType=DECIMAL}, #{total,jdbcType=DECIMAL}, 
+            #{freightUnitPrice,jdbcType=DECIMAL}, #{freight,jdbcType=DECIMAL}, #{roadToll,jdbcType=DECIMAL}, 
+            #{departureTime,jdbcType=TIMESTAMP}, #{backTime,jdbcType=TIMESTAMP}, #{escort,jdbcType=INTEGER}
+            )
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.transport.user.pojo.po.Trip" >
+        update t_trip
+        <set >
+            <if test="driver != null" >
+                driver = #{driver,jdbcType=INTEGER},
+            </if>
+            <if test="truck != null" >
+                truck = #{truck,jdbcType=INTEGER},
+            </if>
+            <if test="intermediary != null" >
+                intermediary = #{intermediary,jdbcType=INTEGER},
+            </if>
+            <if test="refinery != null" >
+                refinery = #{refinery,jdbcType=INTEGER},
+            </if>
+            <if test="oil != null" >
+                oil = #{oil,jdbcType=INTEGER},
+            </if>
+            <if test="tonnage != null" >
+                tonnage = #{tonnage,jdbcType=DOUBLE},
+            </if>
+            <if test="oilUnitPrice != null" >
+                oil_unit_price = #{oilUnitPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="total != null" >
+                total = #{total,jdbcType=DECIMAL},
+            </if>
+            <if test="freightUnitPrice != null" >
+                freight_unit_price = #{freightUnitPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="freight != null" >
+                freight = #{freight,jdbcType=DECIMAL},
+            </if>
+            <if test="roadToll != null" >
+                road_toll = #{roadToll,jdbcType=DECIMAL},
+            </if>
+            <if test="departureTime != null" >
+                departure_time = #{departureTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="backTime != null" >
+                back_time = #{backTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="escort != null" >
+                escort = #{escort,jdbcType=INTEGER},
+            </if>
+        </set>
+        where trip_id = #{tripId,jdbcType=INTEGER}
+    </update>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from t_trip
+        where trip_id = #{tripId,jdbcType=INTEGER}
+    </delete>
+
+</mapper>

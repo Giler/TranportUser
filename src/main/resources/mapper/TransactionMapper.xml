@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.transport.user.dao.TransactionMapper" >
+    <resultMap id="BaseResultMap" type="com.transport.user.pojo.po.Transaction" >
+        <id column="transaction_id" property="transactionId" jdbcType="INTEGER" />
+        <result column="trip" property="trip" jdbcType="INTEGER" />
+        <result column="customer" property="customer" jdbcType="INTEGER" />
+        <result column="tonnage" property="tonnage" jdbcType="DOUBLE" />
+        <result column="trading_unit_price" property="tradingUnitPrice" jdbcType="DECIMAL" />
+        <result column="toll_price" property="tollPrice" jdbcType="DECIMAL" />
+        <result column="profit_ton" property="profitTon" jdbcType="DOUBLE" />
+        <result column="total_cost" property="totalCost" jdbcType="DECIMAL" />
+        <result column="trading_time" property="tradingTime" jdbcType="TIMESTAMP" />
+        <result column="payment_status" property="paymentStatus" jdbcType="INTEGER" />
+        <result column="transaction_lock" property="transactionLock" jdbcType="INTEGER" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        transaction_id, trip, customer, tonnage, trading_unit_price, toll_price, profit_ton, 
+        total_cost, trading_time, payment_status, transaction_lock
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from t_transaction
+        where transaction_id = #{transactionId,jdbcType=INTEGER}
+    </select>
+
+    <insert id="insert" parameterType="com.transport.user.pojo.po.Transaction" >
+        insert into t_transaction (transaction_id, trip, customer, 
+            tonnage, trading_unit_price, toll_price, 
+            profit_ton, total_cost, trading_time, 
+            payment_status, transaction_lock)
+        values (#{transactionId,jdbcType=INTEGER}, #{trip,jdbcType=INTEGER}, #{customer,jdbcType=INTEGER}, 
+            #{tonnage,jdbcType=DOUBLE}, #{tradingUnitPrice,jdbcType=DECIMAL}, #{tollPrice,jdbcType=DECIMAL}, 
+            #{profitTon,jdbcType=DOUBLE}, #{totalCost,jdbcType=DECIMAL}, #{tradingTime,jdbcType=TIMESTAMP}, 
+            #{paymentStatus,jdbcType=INTEGER}, #{transactionLock,jdbcType=INTEGER})
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.transport.user.pojo.po.Transaction" >
+        update t_transaction
+        <set >
+            <if test="trip != null" >
+                trip = #{trip,jdbcType=INTEGER},
+            </if>
+            <if test="customer != null" >
+                customer = #{customer,jdbcType=INTEGER},
+            </if>
+            <if test="tonnage != null" >
+                tonnage = #{tonnage,jdbcType=DOUBLE},
+            </if>
+            <if test="tradingUnitPrice != null" >
+                trading_unit_price = #{tradingUnitPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="tollPrice != null" >
+                toll_price = #{tollPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="profitTon != null" >
+                profit_ton = #{profitTon,jdbcType=DOUBLE},
+            </if>
+            <if test="totalCost != null" >
+                total_cost = #{totalCost,jdbcType=DECIMAL},
+            </if>
+            <if test="tradingTime != null" >
+                trading_time = #{tradingTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="paymentStatus != null" >
+                payment_status = #{paymentStatus,jdbcType=INTEGER},
+            </if>
+            <if test="transactionLock != null" >
+                transaction_lock = #{transactionLock,jdbcType=INTEGER},
+            </if>
+        </set>
+        where transaction_id = #{transactionId,jdbcType=INTEGER}
+    </update>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from t_transaction
+        where transaction_id = #{transactionId,jdbcType=INTEGER}
+    </delete>
+
+</mapper>

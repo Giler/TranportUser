@@ -7,6 +7,8 @@
  */
 package com.transport.user.pojo.po;
 
+import lombok.*;
+
 import java.util.Date;
 
 /**
@@ -15,6 +17,11 @@ import java.util.Date;
  * @author 
  * @version 1.0 2017-05-30
  */
+@ToString
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class CustomerInfo {
 
     //客户编号
@@ -32,48 +39,6 @@ public class CustomerInfo {
     //数据创建人
     private Integer creator;
 
-    public Integer getCustomerId() {
-        return customerId;
-    }
-    public void setCustomerId(Integer customerId) {
-        this.customerId = customerId;
-    }
-    public String getCustomerName() {
-        return customerName;
-    }
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName == null ? null : customerName.trim();
-    }
-    public Integer getCustomerAge() {
-        return customerAge;
-    }
-    public void setCustomerAge(Integer customerAge) {
-        this.customerAge = customerAge;
-    }
-    public String getCustomerPhone() {
-        return customerPhone;
-    }
-    public void setCustomerPhone(String customerPhone) {
-        this.customerPhone = customerPhone == null ? null : customerPhone.trim();
-    }
-    public String getCustomerAddress() {
-        return customerAddress;
-    }
-    public void setCustomerAddress(String customerAddress) {
-        this.customerAddress = customerAddress == null ? null : customerAddress.trim();
-    }
-    public Date getCreateTime() {
-        return createTime;
-    }
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-    public Integer getCreator() {
-        return creator;
-    }
-    public void setCreator(Integer creator) {
-        this.creator = creator;
-    }
 	@Override
 	public String toString() {
 		return "CustomerInfo [customerId=" + customerId + ", customerName="

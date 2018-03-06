@@ -75,5 +75,11 @@
         delete from t_driver_info
         where driver_id = #{driverId,jdbcType=INTEGER}
     </delete>
+    
+    <update id="updateDriverName" parameterType="com.transport.user.pojo.po.DriverInfo">
+        UPDATE t_driver_info
+        <set>driver_name= #{driverName,jdbcType=VARCHAR}</set>
+        <where>driver_id = #{driverId}</where>
+    </update>
 
 </mapper>

@@ -10,6 +10,6 @@ import lombok.*;
 public class Users {
     String userName;
     String age;
-
+    String list;
 
 }

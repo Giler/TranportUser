@@ -7,12 +7,21 @@
  */
 package com.transport.user.pojo.po;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  * 开车司机
  * 
  * @author 
  * @version 1.0 2017-05-30
  */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class DriverInfo {
 
     //编号
@@ -36,64 +45,4 @@ public class DriverInfo {
     //工作距离
     private String workingDistance;
 
-    public Integer getDriverId() {
-        return driverId;
-    }
-    public void setDriverId(Integer driverId) {
-        this.driverId = driverId;
-    }
-    public String getDriverName() {
-        return driverName;
-    }
-    public void setDriverName(String driverName) {
-        this.driverName = driverName == null ? null : driverName.trim();
-    }
-    public String getDriverPhone() {
-        return driverPhone;
-    }
-    public void setDriverPhone(String driverPhone) {
-        this.driverPhone = driverPhone == null ? null : driverPhone.trim();
-    }
-    public Integer getDriverAge() {
-        return driverAge;
-    }
-    public void setDriverAge(Integer driverAge) {
-        this.driverAge = driverAge;
-    }
-    public Integer getVehicleAge() {
-        return vehicleAge;
-    }
-    public void setVehicleAge(Integer vehicleAge) {
-        this.vehicleAge = vehicleAge;
-    }
-    public String getDrivingLevel() {
-        return drivingLevel;
-    }
-    public void setDrivingLevel(String drivingLevel) {
-        this.drivingLevel = drivingLevel == null ? null : drivingLevel.trim();
-    }
-    public Integer getDengerousPermit() {
-        return dengerousPermit;
-    }
-    public void setDengerousPermit(Integer dengerousPermit) {
-        this.dengerousPermit = dengerousPermit;
-    }
-    public Integer getExperince() {
-        return experince;
-    }
-    public void setExperince(Integer experince) {
-        this.experince = experince;
-    }
-    public String getHomeAddress() {
-        return homeAddress;
-    }
-    public void setHomeAddress(String homeAddress) {
-        this.homeAddress = homeAddress == null ? null : homeAddress.trim();
-    }
-    public String getWorkingDistance() {
-        return workingDistance;
-    }
-    public void setWorkingDistance(String workingDistance) {
-        this.workingDistance = workingDistance == null ? null : workingDistance.trim();
-    }
 }

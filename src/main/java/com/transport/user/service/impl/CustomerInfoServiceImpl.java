@@ -32,6 +32,7 @@ public class CustomerInfoServiceImpl extends BaseServiceImpl<CustomerInfo> imple
         companyInfoMapper.selectCompanInfo(1);
 
         Users user = new Users();
+        Users user2 = Users.builder().age("123").userName("456").build();
         System.out.print(user.toString());
 
     }

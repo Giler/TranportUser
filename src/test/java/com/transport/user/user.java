@@ -18,6 +18,6 @@ public class user {
     public void showuUser(){
         Integer customerId = 1;
         CustomerInfo customerInfo = customerInfoService.getObjectById(customerId);
-        System.out.print(customerInfo);
+        System.out.print(customerInfo.toString());
     }
 }

@@ -10,6 +10,7 @@ package com.transport.user.dao;
 
 import com.transport.user.pojo.po.CustomerInfo;
 
+
 public interface CustomerInfoMapper extends MapperBase<CustomerInfo> {
-    
+
 }

@@ -7,6 +7,8 @@
  */
 package com.transport.user.pojo.po;
 
+import lombok.*;
+
 import java.util.Date;
 
 /**
@@ -15,6 +17,11 @@ import java.util.Date;
  * @author 
  * @version 1.0 2017-05-30
  */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@ToString
 public class CompanyInfo {
 
     //编号
@@ -39,70 +46,4 @@ public class CompanyInfo {
     //根据其判断是否可用
     private Integer status;
 
-    public Integer getCompanyId() {
-        return companyId;
-    }
-    public void setCompanyId(Integer companyId) {
-        this.companyId = companyId;
-    }
-    public Integer getCustomer() {
-        return customer;
-    }
-    public void setCustomer(Integer customer) {
-        this.customer = customer;
-    }
-    public String getCompanyName() {
-        return companyName;
-    }
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName == null ? null : companyName.trim();
-    }
-    public Date getCreateTime() {
-        return createTime;
-    }
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-    public Integer getCreator() {
-        return creator;
-    }
-    public void setCreator(Integer creator) {
-        this.creator = creator;
-    }
-    public String getCompanyAddress() {
-        return companyAddress;
-    }
-    public void setCompanyAddress(String companyAddress) {
-        this.companyAddress = companyAddress == null ? null : companyAddress.trim();
-    }
-    public Integer getCompanyType() {
-        return companyType;
-    }
-    public void setCompanyType(Integer companyType) {
-        this.companyType = companyType;
-    }
-    public Double getAccommodateQuantity() {
-        return accommodateQuantity;
-    }
-    public void setAccommodateQuantity(Double accommodateQuantity) {
-        this.accommodateQuantity = accommodateQuantity;
-    }
-    public Double getCurrentVolume() {
-        return currentVolume;
-    }
-    public void setCurrentVolume(Double currentVolume) {
-        this.currentVolume = currentVolume;
-    }
-    public Double getReminderVolume() {
-        return reminderVolume;
-    }
-    public void setReminderVolume(Double reminderVolume) {
-        this.reminderVolume = reminderVolume;
-    }
-    public Integer getStatus() {
-        return status;
-    }
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
 }

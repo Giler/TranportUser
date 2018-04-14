@@ -1,4 +1,4 @@
-package com.transport.user;
+package com.transport;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;

@@ -1,7 +1,6 @@
+
 ## 数据源配置
 spring:
-  profiles:
-    active: @activatedProperties@
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/transport?useUnicode=true&characterEncoding=utf8
     username: root
@@ -12,7 +11,7 @@ spring:
 mybatis:
   typeAliasesPackage: com.transprot.user.dao
   mapperLocations: classpath:mapper/*.xml
+## Tomcat启动端口
+server:
+  port: 8081
 
-## logback日志配置文件
-logging:
-  config: classpath:config/logback/logback-${spring.profiles.active}.xml

@@ -9,8 +9,9 @@ package com.transport.user.dao;
 
 
 import com.transport.user.pojo.po.CustomerInfo;
+import org.apache.ibatis.annotations.Select;
 
 
 public interface CustomerInfoMapper extends MapperBase<CustomerInfo> {
-
+    String QUERY_ITEM = " customer_id, customer_name, customer_age, customer_phone, customer_address, create_time, creator";
 }

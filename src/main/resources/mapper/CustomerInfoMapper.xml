@@ -22,7 +22,19 @@
         from t_customer_info
         where customer_id = #{customerId,jdbcType=INTEGER}
     </select>
-
+    <select id="selectObjectList" resultMap="BaseResultMap" parameterType="com.transport.user.pojo.po.CustomerInfo">
+        SELECT 
+        <include refid="Base_Column_List" />
+        from t_customer_info
+        <where>
+            <if test="customerName != null">
+                customer_name = #{customerName}
+            </if>
+            <if test="customerPhone != null">
+                customer_phone = #{cutomerPhone}
+            </if>
+        </where>
+    </select>
     <insert id="insert" parameterType="com.transport.user.pojo.po.CustomerInfo" >
         insert into t_customer_info (customer_id, customer_name, customer_age, 
             customer_phone, customer_address, create_time, 

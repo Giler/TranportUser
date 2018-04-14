@@ -1,16 +1,16 @@
 package com.transport.user.web.user;
 
 import com.transport.user.pojo.vo.ResultData;
+import com.transport.user.web.BaseController;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@RestController
-@RequestMapping("/transport")
 @Slf4j
-public class UserController {
+@RestController
+public class UserController extends BaseController{
 
     @GetMapping("/user/login")
     public ResultData login(@RequestParam(value = "username", required = false) String username, @RequestParam(value = "password", required = false) String password) {
@@ -21,7 +21,7 @@ public class UserController {
         return resultData;
     }
 
-    @GetMapping("/user/info")
+    @GetMapping("/info")
     public ResultData userInfo(@RequestParam("token") String token) {
         log.info("传入的token:{}", token);
         String[] roles = new String[]{"123","456"};

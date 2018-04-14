@@ -19,7 +19,7 @@ public class Driver extends Base{
 
     @Test
     public void updateDriverByName(){
-        int result = driverInfoService.updateByDriverName("管","杜");
+        int result = driverInfoService.updateByDriverName("管","杜 ");
 
         System.out.println(result==1?"更新成功":"更新失败");
     }

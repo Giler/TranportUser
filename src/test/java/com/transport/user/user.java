@@ -15,9 +15,17 @@ public class user {
     CustomerInfoService customerInfoService;
 
     @Test
-    public void showuUser(){
+    public void showuUser() {
         Integer customerId = 1;
         CustomerInfo customerInfo = customerInfoService.getObjectById(customerId);
         System.out.print(customerInfo.toString());
+    }
+
+    @Test
+    public void selectAllCustomer() {
+        Integer pageNum = 1;
+        Integer pageSize = 5;
+        CustomerInfo customerInfo = null;
+        customerInfoService.getCustomerInfoByIDList(pageNum,pageSize,customerInfo);
     }
 }
